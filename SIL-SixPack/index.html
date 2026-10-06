@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101720">
+  <title>Six Pack · SIL</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="src/flight-state.js"></script>
+  <script defer src="src/instruments.js"></script>
+  <script defer src="src/app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">✦</div>
+      <div class="brand-copy">
+        <span class="eyebrow">PROTOTIPO DE INSTRUMENTACIÓN</span>
+        <h1>Six Pack <span>/ SIL</span></h1>
+      </div>
+      <div class="topbar-meta">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span>ENTRADA MANUAL</span>
+        <span class="meta-separator">/</span>
+        <span>10 Hz</span>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="panel-board" aria-labelledby="board-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">PANEL DE VUELO</p>
+            <h2 id="board-title">Instrumentos</h2>
+          </div>
+          <div id="system-status" class="status-pill" role="status" aria-live="polite">INICIANDO</div>
+        </div>
+
+        <div class="instrument-grid">
+          <article class="instrument-card" aria-label="Indicador de velocidad aérea">
+            <div class="card-heading"><span class="instrument-code">ASI</span><span>VELOCIDAD AÉREA</span></div>
+            <canvas id="gauge-asi" class="gauge" width="300" height="300" role="img" aria-label="Indicador de velocidad aérea"></canvas>
+          </article>
+          <article class="instrument-card" aria-label="Horizonte artificial">
+            <div class="card-heading"><span class="instrument-code">AI</span><span>HORIZONTE ARTIFICIAL</span></div>
+            <canvas id="gauge-ai" class="gauge" width="300" height="300" role="img" aria-label="Horizonte artificial"></canvas>
+          </article>
+          <article class="instrument-card" aria-label="Altímetro">
+            <div class="card-heading"><span class="instrument-code">ALT</span><span>ALTÍMETRO</span></div>
+            <canvas id="gauge-alt" class="gauge" width="300" height="300" role="img" aria-label="Altímetro"></canvas>
+          </article>
+          <article class="instrument-card" aria-label="Coordinador de viraje">
+            <div class="card-heading"><span class="instrument-code">TC</span><span>COORDINADOR DE VIRAJE</span></div>
+            <canvas id="gauge-tc" class="gauge" width="300" height="300" role="img" aria-label="Coordinador de viraje"></canvas>
+          </article>
+          <article class="instrument-card" aria-label="Indicador de rumbo">
+            <div class="card-heading"><span class="instrument-code">HI</span><span>INDICADOR DE RUMBO</span></div>
+            <canvas id="gauge-hi" class="gauge" width="300" height="300" role="img" aria-label="Indicador de rumbo"></canvas>
+          </article>
+          <article class="instrument-card" aria-label="Indicador de velocidad vertical">
+            <div class="card-heading"><span class="instrument-code">VSI</span><span>VELOCIDAD VERTICAL</span></div>
+            <canvas id="gauge-vsi" class="gauge" width="300" height="300" role="img" aria-label="Indicador de velocidad vertical"></canvas>
+          </article>
+        </div>
+        <p class="board-note">Prototipo académico. Las escalas gráficas son preliminares.</p>
+      </section>
+
+      <aside class="control-panel" aria-labelledby="controls-title">
+        <div class="control-head">
+          <p class="eyebrow">SIMULACIÓN EN SOFTWARE</p>
+          <h2 id="controls-title">Condición de vuelo</h2>
+          <p>Modifica los valores para comprobar la respuesta de los seis instrumentos.</p>
+        </div>
+        <form id="flight-form" novalidate>
+          <div class="control-group">
+            <h3>DATOS AERODINÁMICOS</h3>
+            <label class="field" for="airspeed"><span>Velocidad indicada <small>kt</small></span><input id="airspeed" name="airspeed" type="number" min="0" max="240" step="1" value="90" inputmode="decimal"><span class="field-error" aria-hidden="true"></span></label>
+            <label class="field" for="altitude"><span>Altitud <small>ft</small></span><input id="altitude" name="altitude" type="number" min="-2000" max="60000" step="10" value="3500" inputmode="decimal"><span class="field-error" aria-hidden="true"></span></label>
+            <label class="field" for="verticalSpeed"><span>Velocidad vertical <small>ft/min</small></span><input id="verticalSpeed" name="verticalSpeed" type="number" min="-4000" max="4000" step="50" value="500" inputmode="decimal"><span class="field-error" aria-hidden="true"></span></label>
+          </div>
+          <div class="control-group">
+            <h3>ACTITUD Y DIRECCIÓN</h3>
+            <label class="field" for="pitch"><span>Cabeceo <small>°</small></span><input id="pitch" name="pitch" type="number" min="-45" max="45" step="1" value="5" inputmode="decimal"><span class="field-error" aria-hidden="true"></span></label>
+            <label class="field" for="roll"><span>Alabeo <small>°</small></span><input id="roll" name="roll" type="number" min="-60" max="60" step="1" value="10" inputmode="decimal"><span class="field-error" aria-hidden="true"></span></label>
+            <label class="field" for="heading"><span>Rumbo <small>°</small></span><input id="heading" name="heading" type="number" min="0" max="359" step="1" value="75" inputmode="decimal"><span class="field-error" aria-hidden="true"></span></label>
+            <label class="field" for="turnRate"><span>Velocidad de viraje <small>°/s</small></span><input id="turnRate" name="turnRate" type="number" min="-6" max="6" step="0.1" value="1.5" inputmode="decimal"><span class="field-error" aria-hidden="true"></span></label>
+            <label class="field" for="slip"><span>Deslizamiento <small>−1 a +1</small></span><input id="slip" name="slip" type="number" min="-1" max="1" step="0.1" value="0" inputmode="decimal"><span class="field-error" aria-hidden="true"></span></label>
+          </div>
+          <div class="control-actions">
+            <button id="reset-button" type="reset">Restablecer valores</button>
+          </div>
+        </form>
+        <div class="control-foot">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>FUENTE: MANUAL</span>
+        </div>
+      </aside>
+    </main>
+  </div>
+</body>
+</html>

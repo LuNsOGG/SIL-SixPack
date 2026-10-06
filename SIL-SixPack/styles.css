@@ -1,0 +1,146 @@
+:root {
+  color-scheme: dark;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #0d141d;
+  color: #e9f0f5;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 28% 0%, rgba(51, 92, 123, .18), transparent 40%),
+    linear-gradient(180deg, #131d28, #0a1119 75%);
+}
+
+.app-shell { max-width: 1710px; margin: 0 auto; padding: 0 26px 35px; }
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 90px;
+  border-bottom: 1px solid #273645;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  color: #0c1c23;
+  background: #54d1d0;
+  border-radius: 12px;
+  font-size: 29px;
+  font-weight: 800;
+  box-shadow: 0 0 28px rgba(84, 209, 208, .2);
+}
+
+.brand-copy h1 { margin: 2px 0 0; font-size: 24px; letter-spacing: -.035em; line-height: 1.1; }
+.brand-copy h1 span { color: #54d1d0; font-weight: 400; }
+.eyebrow { margin: 0; color: #78a9b6; font-size: 10px; font-weight: 800; letter-spacing: .19em; }
+
+.topbar-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  color: #a7bac7;
+  font-size: 10px;
+  letter-spacing: .12em;
+  font-weight: 800;
+}
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: #68dbc5; box-shadow: 0 0 10px #68dbc5; flex: none; }
+.meta-separator { color: #506677; }
+
+.workspace { display: grid; grid-template-columns: minmax(0, 1fr) 335px; align-items: start; gap: 23px; padding-top: 28px; }
+.panel-board { min-width: 0; }
+.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 15px; margin-bottom: 18px; }
+.section-heading h2, .control-head h2 { margin: 5px 0 0; font-size: 26px; font-weight: 650; letter-spacing: -.035em; }
+.status-pill { padding: 8px 11px; color: #78e1cb; background: #16362f; border: 1px solid #24574b; border-radius: 6px; font-size: 10px; font-weight: 800; letter-spacing: .1em; white-space: nowrap; }
+.status-pill.status-error { color: #ffbc89; background: #3b271e; border-color: #754a2b; }
+
+.instrument-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
+.instrument-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #2b3c4a;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #22313d, #16222d 55%, #121e28);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, .16), inset 0 1px 0 rgba(255,255,255,.045);
+}
+.card-heading { display: flex; align-items: center; gap: 8px; height: 41px; padding: 0 14px; color: #9cb2c0; font-size: 10px; font-weight: 800; letter-spacing: .11em; border-bottom: 1px solid #314350; white-space: nowrap; }
+.instrument-code { color: #70d5cf; border: 1px solid #3e7375; background: #223e46; padding: 3px 5px; border-radius: 3px; letter-spacing: .05em; }
+.gauge { display: block; width: min(100%, 335px); height: auto; aspect-ratio: 1; margin: 0 auto; }
+.board-note { margin: 14px 0; color: #788f9e; font-size: 11px; }
+
+.control-panel {
+  position: sticky;
+  top: 16px;
+  overflow: hidden;
+  border: 1px solid #344857;
+  border-radius: 12px;
+  background: #1a2935;
+  box-shadow: 0 18px 40px rgba(0,0,0,.18);
+}
+.control-head { padding: 20px 22px 17px; border-bottom: 1px solid #354955; }
+.control-head h2 { font-size: 21px; }
+.control-head > p:last-child { color: #9eb2bf; font-size: 12px; line-height: 1.45; margin: 9px 0 0; }
+.control-group { padding: 15px 22px 4px; }
+.control-group + .control-group { border-top: 1px solid #344550; }
+.control-group h3 { margin: 0 0 7px; color: #6fd0ca; font-size: 10px; letter-spacing: .13em; }
+.field { display: grid; grid-template-columns: 1fr 92px; align-items: center; column-gap: 12px; min-height: 47px; color: #e2ebf1; font-size: 12px; }
+.field > span:first-child { line-height: 1.2; }
+.field small { display: block; margin-top: 3px; color: #869dac; font-size: 10px; }
+.field input {
+  width: 100%; height: 33px; padding: 0 8px;
+  outline: 0; color: #f1f7f8; background: #101c26;
+  border: 1px solid #3d5261; border-radius: 5px;
+  font: 600 14px/1 "Segoe UI", Arial, sans-serif; text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.field input:hover { border-color: #6f9bab; }
+.field input:focus { border-color: #65cfcb; box-shadow: 0 0 0 2px rgba(101,207,203,.13); }
+.field input[aria-invalid="true"] { border-color: #ea9569; }
+.field-error { grid-column: 1 / -1; min-height: 0; color: #ffbd91; font-size: 10px; text-align: right; }
+.field-error:empty { display: none; }
+.control-actions { padding: 14px 22px 20px; }
+.control-actions button { width: 100%; padding: 11px; color: #d1e7ec; background: #2a4551; border: 1px solid #49717c; border-radius: 5px; font: 700 11px "Segoe UI", Arial, sans-serif; letter-spacing: .08em; cursor: pointer; }
+.control-actions button:hover { background: #345a65; }
+.control-actions button:focus-visible { outline: 2px solid #6dd8ce; outline-offset: 2px; }
+.control-foot { display: flex; align-items: center; gap: 9px; padding: 13px 22px; border-top: 1px solid #344550; background: #15232d; color: #8bb2bb; font-size: 10px; font-weight: 800; letter-spacing: .12em; }
+.control-foot .live-dot { width: 6px; height: 6px; }
+
+@media (max-width: 1180px) {
+  .workspace { grid-template-columns: minmax(0, 1fr) 292px; gap: 16px; }
+  .card-heading { font-size: 9px; padding: 0 9px; }
+  .control-head, .control-group, .control-actions, .control-foot { padding-left: 16px; padding-right: 16px; }
+}
+@media (max-width: 960px) {
+  .workspace { grid-template-columns: 1fr; }
+  .control-panel { position: static; }
+  #flight-form { display: grid; grid-template-columns: 1fr 1fr; }
+  .control-group + .control-group { border-top: 0; border-left: 1px solid #344550; }
+  .control-actions { grid-column: 1 / -1; }
+}
+@media (max-width: 680px) {
+  .app-shell { padding-left: 12px; padding-right: 12px; }
+  .topbar-meta { font-size: 9px; }
+  .meta-separator, .topbar-meta span:last-child { display: none; }
+  .instrument-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .card-heading { height: 37px; font-size: 8px; letter-spacing: .03em; }
+  .instrument-code { font-size: 8px; }
+  #flight-form { grid-template-columns: 1fr; }
+  .control-group + .control-group { border-left: 0; border-top: 1px solid #344550; }
+}
+@media (max-width: 420px) {
+  .instrument-grid { grid-template-columns: 1fr; }
+  .gauge { width: min(100%, 300px); }
+  .section-heading h2 { font-size: 22px; }
+}
